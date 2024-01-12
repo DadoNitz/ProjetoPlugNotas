@@ -35,6 +35,11 @@ namespace NOTAPROJ1
                 switch (escolha)
                 {
                     case "1":
+                        Console.ForegroundColor = ConsoleColor.DarkYellow;
+                        Console.WriteLine("============================================");
+                        Console.WriteLine("                EMITIR NFe                  ");
+                        Console.WriteLine("============================================");
+                        Console.ResetColor();
                         EmitirNotaFiscal();
                         break;
                     case "2":
