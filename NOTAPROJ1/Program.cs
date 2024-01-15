@@ -375,9 +375,11 @@ namespace NOTAPROJ1
                         EmitirNotaFiscal();
                         break;
                     case "2":
-
-                        Console.WriteLine("show d bola!");
-                        return;
+                        Console.ForegroundColor = ConsoleColor.DarkYellow;
+                        Console.WriteLine("============================================");
+                        Console.ResetColor();
+                        jsoninteiro();
+                        break;
 
                     case "0":
                         Console.WriteLine("Encerrando o programa...");
@@ -386,6 +388,56 @@ namespace NOTAPROJ1
                 }
             }
         }
+
+            static async Task jsoninteiro()
+        {
+            Console.Write("Informe o caminho completo do arquivo JSON: ");
+            string caminho = Console.ReadLine();
+
+            if (File.Exists(caminho))
+            {
+                string json = File.ReadAllText(caminho, Encoding.UTF8);
+                string apiUrl = "https://api.sandbox.plugnotas.com.br/nfe";
+                string authToken = "2da392a6-79d2-4304-a8b7-959572c7e44d";
+
+                await EnviarJsonParaAPI(apiUrl, json, authToken);
+            }
+            else
+            {
+                Console.WriteLine("Arquivo não encontrado. Certifique-se de fornecer o caminho correto.");
+            }
+        }
+
+            static async Task EnviarJsonParaAPI(string apiUrl, string json, string authToken)
+        {
+            using (HttpClient httpClient = new HttpClient())
+            {
+                httpClient.DefaultRequestHeaders.Add("X-API-KEY", authToken);
+
+                // Configurando o conteúdo da requisição como JSON
+                StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
+
+                try
+                { 
+                    HttpResponseMessage response = await httpClient.PostAsync(apiUrl, content);
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        Console.WriteLine("Nota(as) em processamento!");
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Erro na requisição: {response.StatusCode} - {response.ReasonPhrase}");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Erro na requisição: {ex.Message}");
+                }
+            }
+        }
+    
+
             static async Task CadastroCertificado()
             {
                 Console.Write("Informe o caminho completo do arquivo a ser enviado: ");
