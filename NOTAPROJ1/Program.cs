@@ -523,8 +523,9 @@ namespace NOTAPROJ1
             static EnderecoEmpresa ColetarDadosEnderecoEmpresa()
             {
                 EnderecoEmpresa endereco = new EnderecoEmpresa();
-
-                Console.WriteLine("=== Coletar Dados de Endereço ===");
+                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                Console.WriteLine("========= Coletar Dados de Endereço ========");
+                Console.ResetColor();  
                 Console.Write("Código do País: ");
                 endereco.CodigoPais = Console.ReadLine();
                 Console.Write("Descrição do País: ");
@@ -556,8 +557,9 @@ namespace NOTAPROJ1
             static ConfigRPS ColetarDadosConfigRPS()
             {
                 ConfigRPS configRPS = new ConfigRPS();
-
-                Console.WriteLine("=== Coletar Dados de Configuração RPS ===");
+                Console.ForegroundColor = ConsoleColor.DarkYellow; 
+                Console.WriteLine("==== Coletar Dados de Configuração RPS ====");
+                Console.ResetColor(); 
                 Console.Write("Lote: ");
                 configRPS.Lote = Convert.ToInt32(Console.ReadLine());
 
@@ -576,8 +578,9 @@ namespace NOTAPROJ1
                 for (int i = 0; i < quantidade; i++)
                 {
                     NumeracaoRPS numeracao = new NumeracaoRPS();
-
-                    Console.WriteLine($"--- Coletar Dados para Numeracao RPS {i + 1} ---");
+                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                Console.WriteLine($"==== Coletar Dados para Numeracao RPS {i + 1} ===");
+                Console.ResetColor();
                     Console.Write("Numero: ");
                     numeracao.Numero = Convert.ToInt32(Console.ReadLine());
 
@@ -630,12 +633,10 @@ namespace NOTAPROJ1
 
             static ConfigNFSe ColetarDadosConfigNFSe()
             {
-                ConfigNFSe configNFSe = new ConfigNFSe();
-                Console.WriteLine("=== Coletar Dados de ConfigNFSe ===");
-
-
-                configNFSe.Rps = ColetarDadosConfigRPS();
-
+                ConfigNFSe configNFSe = new ConfigNFSe();         
+                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                Console.WriteLine("======== Coletar Dados de ConfigNFSe =======");
+                Console.ResetColor();
                 Console.Write("Producao (true/false): ");
                 configNFSe.Producao = Convert.ToBoolean(Console.ReadLine());
 
@@ -646,7 +647,9 @@ namespace NOTAPROJ1
                 int quantidadeIntegracoes = Convert.ToInt32(Console.ReadLine());
                 configNFSe.Integracoes = new List<Integracao>();
 
-                return configNFSe;
+                configNFSe.Rps = ColetarDadosConfigRPS();
+
+            return configNFSe;
             }
 
             static ConfigDFe ColetarDadosConfigDFe()
@@ -736,16 +739,12 @@ namespace NOTAPROJ1
             {
                 EmpresaCadastro empresaCadastro = new EmpresaCadastro();
 
-                Console.WriteLine("=== Informações do Endereço ===");
                 empresaCadastro.Endereco = ColetarDadosEnderecoEmpresa();
 
-                Console.WriteLine("=== Configurações NFSe ===");
                 empresaCadastro.NFSe = ColetarDadosConfigNFSe();
 
-                Console.WriteLine("=== Configurações NFe ===");
                 empresaCadastro.NFe = ColetarDadosConfigNFe();
 
-                Console.WriteLine("=== Configurações NFCe ===");
                 empresaCadastro.NFCe = ColetarDadosConfigNFCe();
 
                 Console.Write("Incentivo Fiscal (true/false): ");
@@ -780,8 +779,9 @@ namespace NOTAPROJ1
 
             static void ExibirDadosEmpresa(EmpresaCadastro empresa)
             {
-                Console.WriteLine("=== Dados da Nova Empresa Cadastrada ===");
-
+            Console.ForegroundColor = ConsoleColor.DarkYellow;           
+            Console.WriteLine("=== Dados da Nova Empresa Cadastrada ===");
+            Console.ResetColor();
 
                 // Display the data in the console
                 Console.WriteLine(JsonSerializer.Serialize(empresa, new JsonSerializerOptions { WriteIndented = true }));
