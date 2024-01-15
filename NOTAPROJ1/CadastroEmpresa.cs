@@ -10,12 +10,14 @@ using System.Security.Cryptography.X509Certificates;
 
 namespace NOTAPROJ1
 {
-    class CadastroEmpresa
-    {
-       public static void cadastroempresa()
+     class CadastroEmpresa
         {
+            public static void cadastroempresa()
+            {
+                CadastrarEMPRESA().Wait(); // Aguarda a conclusão da função insercaodedados
+            }
 
-            static void CadastrarEmpresa()
+            static async Task CadastrarEMPRESA()
             {
                 EmpresaCadastro novaEmpresa = ColetarDadosEmpresaCadastro();
                 ExibirDadosEmpresa(novaEmpresa);
@@ -308,5 +310,5 @@ namespace NOTAPROJ1
             }
 
         }
-    }
+    
 }

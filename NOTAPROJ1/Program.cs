@@ -16,7 +16,6 @@ namespace NOTAPROJ1
             while (true)
             {
                 Console.Clear(); // Limpa a tela a cada iteração do menu
-
                 Console.ForegroundColor = ConsoleColor.DarkYellow;
                 Console.WriteLine("============================================");
                 Console.WriteLine("              Menu Principal                ");
@@ -60,11 +59,7 @@ namespace NOTAPROJ1
 
                 Console.WriteLine("Pressione qualquer tecla para continuar...");
                 Console.ReadKey();
-
-
             }
-
-
         }
     }
 }
