@@ -6,7 +6,6 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-
 namespace NOTAPROJ1
 {
     class EmitirNotaFiscal
@@ -17,7 +16,6 @@ namespace NOTAPROJ1
                 Root objetoRoot = ObterDadosDoUsuario();
 
                 string json = JsonSerializer.Serialize(objetoRoot, new JsonSerializerOptions { WriteIndented = true });
-
 
                 string apiUrl = "https://api.sandbox.plugnotas.com.br/nfe";
                 string authToken = "2da392a6-79d2-4304-a8b7-959572c7e44d";
