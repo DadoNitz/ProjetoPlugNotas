@@ -1,18 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
-using System.Text.Json;
-using System.IO;
-using System.Security.Cryptography.X509Certificates;
 
 
 namespace NOTAPROJ1
 {
     class EscolherTipoDeEmissao
     {
-      public static void escolhertipoemissao()
+        public static void escolhertipoemissao()
         {
             Console.ForegroundColor = ConsoleColor.DarkYellow;
             Console.WriteLine("=============> Emitindo NFe <===============");

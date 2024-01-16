@@ -1,17 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
-using System.Text.Json;
-using System.IO;
-using System.Security.Cryptography.X509Certificates;
 
 namespace NOTAPROJ1
 {
     class Program
     {
-       public static void Main()
+        public static void Main()
         {
             while (true)
             {
@@ -24,6 +17,8 @@ namespace NOTAPROJ1
                 Console.WriteLine("1. Emitir Nota Fiscal");
                 Console.WriteLine("2. Cadastrar Certificado ");
                 Console.WriteLine("3. Cadastrar Empresa");
+                Console.WriteLine("4. Consultar Nota");
+                Console.WriteLine("5. Consultar Empresa");
                 Console.WriteLine("0. Sair");
                 Console.ForegroundColor = ConsoleColor.DarkYellow;
                 Console.WriteLine("============================================");
@@ -49,6 +44,18 @@ namespace NOTAPROJ1
                         Console.ResetColor();
                         CadastroEmpresa.cadastroempresa();
                         break;
+                    case "4":
+                        Console.ForegroundColor = ConsoleColor.DarkYellow;
+                        Console.WriteLine("============> Consultar Nota <==============");
+                        Console.ResetColor();
+                        ConsultarNotaFiscal.Main();
+                        break;
+                    case "5":
+                        Console.ForegroundColor = ConsoleColor.DarkYellow;
+                        Console.WriteLine("=========> Consultar Empresa <==============");
+                        Console.ResetColor();
+                        ConsultarEmpresa.Main();
+                        break;
                     case "0":
                         Console.WriteLine("Encerrando o programa...");
                         return;
@@ -57,10 +64,9 @@ namespace NOTAPROJ1
                         break;
                 }
 
-                Console.WriteLine("Pressione qualquer tecla para continuar...");
                 Console.ReadKey();
             }
         }
     }
 }
-    
+

@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Net.Http;
 using System.Text;
-using System.Threading.Tasks;
 using System.Text.Json;
-using System.IO;
-using System.Security.Cryptography.X509Certificates;
+using System.Threading.Tasks;
 
 
 namespace NOTAPROJ1
@@ -32,7 +31,7 @@ namespace NOTAPROJ1
                 Console.WriteLine("]");
 
 
-                Console.WriteLine("Pressione qualquer tecla para fechar o programa...");
+                Console.WriteLine("Pressione qualquer tecla para voltar ao menu...");
                 Console.ReadKey();
             }
 
@@ -258,42 +257,9 @@ namespace NOTAPROJ1
                 return objetoRoot;
 
             }
-           static async Task EnviarJsonParaAPI(string apiUrl, string json, string authToken)
-            {
-                using (HttpClient httpClient = new HttpClient())
-                {
-                    // Configurando o cabeçalho de autorização
-                    httpClient.DefaultRequestHeaders.Add("X-API-KEY", authToken);
 
-                    // Literalmente só coloca colchetes no json para enviar como array de documento
-                    string colchetesjson = $"[{json}]";
-
-                    // Configurando o conteúdo da requisição como JSON
-                    StringContent content = new StringContent(colchetesjson, Encoding.UTF8, "application/json");
-
-                    try
-                    {
-                        // Enviando a requisição POST
-                        HttpResponseMessage response = await httpClient.PostAsync(apiUrl, content);
-
-                        // Verificando se a requisição foi bem-sucedida
-                        if (response.IsSuccessStatusCode)
-                        {
-                            Console.WriteLine("Nota(as) em processamento!");
-                        }
-                        else
-                        {
-                            Console.WriteLine($"Erro na requisição: {response.StatusCode} - {response.ReasonPhrase}");
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine($"Erro na requisição: {ex.Message}");
-                    }
-                }
-            }
         }
-      public static async Task jsoninteiro()
+        public static async Task jsoninteiro()
         {
             Console.Write("Informe o caminho completo do arquivo JSON: ");
             string caminho = Console.ReadLine();
@@ -312,7 +278,7 @@ namespace NOTAPROJ1
             }
         }
 
-       public static async Task EnviarJsonParaAPI(string apiUrl, string json, string authToken)
+        public static async Task EnviarJsonParaAPI(string apiUrl, string json, string authToken)
         {
             using (HttpClient httpClient = new HttpClient())
             {
@@ -325,9 +291,11 @@ namespace NOTAPROJ1
                 {
                     HttpResponseMessage response = await httpClient.PostAsync(apiUrl, content);
 
+
                     if (response.IsSuccessStatusCode)
                     {
-                        Console.WriteLine("Nota(as) em processamento!");
+                        string responseBody = await response.Content.ReadAsStringAsync();
+                        Console.WriteLine($"Nota em processamento: {responseBody}");
                     }
                     else
                     {
@@ -342,6 +310,6 @@ namespace NOTAPROJ1
         }
     }
 }
-            
-    
+
+
 
