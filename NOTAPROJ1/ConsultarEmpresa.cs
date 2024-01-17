@@ -23,7 +23,7 @@ namespace NOTAPROJ1
                         Console.ForegroundColor = ConsoleColor.DarkYellow;
                         Console.WriteLine("==========> Dados da Empresa <==============");
                         Console.ResetColor();
-                        Console.WriteLine($"{responseBody}");
+                        Console.WriteLine(JsonBeautify(responseBody));
                     }
                     else
                     {
@@ -49,6 +49,11 @@ namespace NOTAPROJ1
 
             Console.WriteLine("Pressione qualquer tecla para voltar ao menu...");
             Console.ReadKey();
+        }
+        private static string JsonBeautify(string inputJson)
+        {
+            dynamic parsedJson = Newtonsoft.Json.JsonConvert.DeserializeObject(inputJson);
+            return Newtonsoft.Json.JsonConvert.SerializeObject(parsedJson, Newtonsoft.Json.Formatting.Indented);
         }
     }
 }

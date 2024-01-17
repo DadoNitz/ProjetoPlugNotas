@@ -19,6 +19,7 @@ namespace NOTAPROJ1
                 Console.WriteLine("3. Cadastrar Empresa");
                 Console.WriteLine("4. Consultar Nota");
                 Console.WriteLine("5. Consultar Empresa");
+                Console.WriteLine("6. Cancelar NFe");
                 Console.WriteLine("0. Sair");
                 Console.ForegroundColor = ConsoleColor.DarkYellow;
                 Console.WriteLine("============================================");
@@ -39,10 +40,7 @@ namespace NOTAPROJ1
                         CadastroCertificado.cadastrocertificado();
                         break;
                     case "3":
-                        Console.ForegroundColor = ConsoleColor.DarkYellow;
-                        Console.WriteLine("=========> Cadastrando Empresa <============");
-                        Console.ResetColor();
-                        CadastroEmpresa.cadastroempresa();
+                        EscolherTipoCadastro.escolhertipocadastro();
                         break;
                     case "4":
                         Console.ForegroundColor = ConsoleColor.DarkYellow;
@@ -55,6 +53,12 @@ namespace NOTAPROJ1
                         Console.WriteLine("=========> Consultar Empresa <==============");
                         Console.ResetColor();
                         ConsultarEmpresa.Main();
+                        break;
+                    case "6":
+                        Console.ForegroundColor = ConsoleColor.DarkYellow;
+                        Console.WriteLine("=========> Cancelamento de NFe <============");
+                        Console.ResetColor();
+                        CancelarNfe.Main();
                         break;
                     case "0":
                         Console.WriteLine("Encerrando o programa...");

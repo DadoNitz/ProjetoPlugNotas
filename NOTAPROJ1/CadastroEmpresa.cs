@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Net.Http;
+using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 
@@ -8,17 +11,85 @@ namespace NOTAPROJ1
 {
     class CadastroEmpresa
     {
-        public static void cadastroempresa()
+        public static void main()
         {
-            CadastrarEMPRESA().Wait(); // Aguarda a conclusão da função insercaodedados
+            CadastrarEMPRESA().Wait();
         }
 
         static async Task CadastrarEMPRESA()
         {
-            EmpresaCadastro novaEmpresa = ColetarDadosEmpresaCadastro();
-            ExibirDadosEmpresa(novaEmpresa);
+            bool dadosCorretos = false;
+            EmpresaCadastro novaEmpresa;
+
+            do
+            {
+                novaEmpresa = ColetarDadosEmpresaCadastro();
+
+                Console.WriteLine("Os dados inseridos estão corretos? 1|SIM 2|NAO");
+                int escolhaRevisao = Convert.ToInt32(Console.ReadLine());
+
+                if (escolhaRevisao == 1)
+                {
+                    dadosCorretos = true;
+                }
+                else if (escolhaRevisao == 2)
+                {
+                    Console.WriteLine("Por favor, insira os dados novamente.");
+                }
+                else
+                {
+                    Console.WriteLine("Opção inválida. Por favor, escolha 1 para SIM ou 2 para NAO.");
+                }
+
+            } while (!dadosCorretos);
+
+            // Agora os dados foram confirmados como corretos, você pode enviá-los para a API.
+            await EnviarDadosParaAPI(novaEmpresa);
+
             Console.WriteLine("Pressione qualquer tecla para voltar ao menu...");
             Console.ReadKey();
+        }
+        static async Task EnviarDadosParaAPI(EmpresaCadastro empresa)
+        {
+            string apiUrl = "https://api.sandbox.plugnotas.com.br/empresa";
+            string authToken = "2da392a6-79d2-4304-a8b7-959572c7e44d";
+
+            try
+            {
+                string empresaJson = JsonSerializer.Serialize(empresa);
+
+                using (var httpClient = new HttpClient())
+                {
+                    httpClient.DefaultRequestHeaders.Add("X-API-KEY", authToken);
+
+                    var content = new StringContent(empresaJson, Encoding.UTF8, "application/json");
+
+                    var response = await httpClient.PostAsync(apiUrl, content);
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        bool dadosCorretos = false;
+                        EmpresaCadastro novaEmpresa;
+
+                        Console.WriteLine("Dados enviados com sucesso para a API! Deseja revisar? 1|SIM 2|NAO");
+                        int escolhaRevisao = Convert.ToInt32(Console.ReadLine());
+
+                        if (escolhaRevisao == 1)
+                        {
+                            dadosCorretos = true;
+                        }
+
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Erro ao enviar dados para a API. Código: {response.StatusCode}");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro durante o envio para a API: {ex.Message}");
+            }
         }
 
         static EnderecoEmpresa ColetarDadosEnderecoEmpresa()
@@ -283,28 +354,61 @@ namespace NOTAPROJ1
             Console.ForegroundColor = ConsoleColor.DarkYellow;
             Console.WriteLine("=== Dados da Nova Empresa Cadastrada ===");
             Console.ResetColor();
-
-            // Display the data in the console
             Console.WriteLine(JsonSerializer.Serialize(empresa, new JsonSerializerOptions { WriteIndented = true }));
 
-            // Save the data to a JSON file
-            SaveEmpresaCadastroToJsonFile(empresa);
         }
-
-        static void SaveEmpresaCadastroToJsonFile(EmpresaCadastro empresa)
+        public static async Task jsoninteiro()
         {
-            try
+            Console.Write("Informe o caminho completo do arquivo JSON: ");
+            string caminho = Console.ReadLine();
+
+            if (File.Exists(caminho))
             {
-                string json = JsonSerializer.Serialize(empresa, new JsonSerializerOptions { WriteIndented = true });
-                System.IO.File.WriteAllText("empresa_data.json", json);
-                Console.WriteLine("Dados salvos em empresa_data.json");
+                string json = File.ReadAllText(caminho, Encoding.UTF8);
+                string apiUrl = "https://api.sandbox.plugnotas.com.br/empresa";
+                string authToken = "2da392a6-79d2-4304-a8b7-959572c7e44d";
+
+                await EnviarJsonParaAPI(apiUrl, json, authToken);
             }
-            catch (Exception ex)
+            else
             {
-                Console.WriteLine($"Erro ao salvar os dados: {ex.Message}");
+                Console.WriteLine("Arquivo não encontrado. Certifique-se de fornecer o caminho correto.");
             }
         }
+        public static async Task EnviarJsonParaAPI(string apiUrl, string json, string authToken)
+        {
+            using (HttpClient httpClient = new HttpClient())
+            {
+                httpClient.DefaultRequestHeaders.Add("X-API-KEY", authToken);
 
+                // Configurando o conteúdo da requisição como JSON
+                StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
+
+                try
+                {
+                    HttpResponseMessage response = await httpClient.PostAsync(apiUrl, content);
+
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        string responseBody = await response.Content.ReadAsStringAsync();
+                        Console.WriteLine(JsonBeautify(responseBody));
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Erro no cadastro: {response.StatusCode} - {response.ReasonPhrase}");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Erro no cadastro: {ex.Message}");
+                }
+            }
+        }
+        private static string JsonBeautify(string inputJson)
+        {
+            dynamic parsedJson = Newtonsoft.Json.JsonConvert.DeserializeObject(inputJson);
+            return Newtonsoft.Json.JsonConvert.SerializeObject(parsedJson, Newtonsoft.Json.Formatting.Indented);
+        }
     }
-
 }

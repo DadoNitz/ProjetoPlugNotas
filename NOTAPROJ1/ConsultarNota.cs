@@ -2,13 +2,10 @@
 using System.Net.Http;
 using System.Threading.Tasks;
 
-
 namespace NOTAPROJ1
 {
     public class ConsultarNotaFiscal
     {
-
-
         public static async Task Main()
         {
             Console.Write("Informe o ID da Nota Fiscal: ");
@@ -35,7 +32,7 @@ namespace NOTAPROJ1
                     if (response.IsSuccessStatusCode)
                     {
                         string responseBody = await response.Content.ReadAsStringAsync();
-                        Console.WriteLine($"Nota em processamento: {responseBody}");
+                        Console.WriteLine(JsonBeautify(responseBody));
                     }
                     else
                     {
@@ -47,6 +44,12 @@ namespace NOTAPROJ1
                     Console.WriteLine($"Erro na requisição: {ex.Message}");
                 }
             }
+        }
+
+        private static string JsonBeautify(string inputJson)
+        {
+            dynamic parsedJson = Newtonsoft.Json.JsonConvert.DeserializeObject(inputJson);
+            return Newtonsoft.Json.JsonConvert.SerializeObject(parsedJson, Newtonsoft.Json.Formatting.Indented);
         }
     }
 }
