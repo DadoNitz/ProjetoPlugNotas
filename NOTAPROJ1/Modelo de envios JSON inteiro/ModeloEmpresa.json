@@ -1,0 +1,86 @@
+{
+    "endereco" : {
+        "codigoPais": "1058",
+"descricaoPais": "Brasil",
+"tipoLogradouro": "Rua",
+"logradouro": "DEZENOVE DE OUTUBRO",
+"numero": "88",
+"complemento": "SALA 5",
+"tipoBairro": "Zona",
+"bairro": "CENTRO",
+"codigoCidade": "4310801",
+"descricaoCidade": "IVOTÍ",
+"estado": "RS",
+"cep": "93900000"
+    },
+    "nfse" : {
+        "config" : {
+            "rps" : {
+                "lote" : 12,
+                "numeracao" : [ 
+                    {
+                        "numero" : 2,
+                        "serie" : "CTBZ",
+                        "numeracaoAtual" : 2
+                    }
+                ]
+            },
+            "email" : {
+                "envio" : false
+            },
+            "producao" : true,
+            "envioLimitado" : false,
+            "integracoes" : []
+        },
+        "ativo" : true,
+        "tipoContrato" : 0
+    },
+    "nfe" : {
+        "config" : {
+            "dfe" : {
+                "primeiroNsu" : true
+            },
+            "email" : {
+                "envio" : false
+            },
+            "integracoes" : {
+                "plugStorage" : {
+                    "ativo" : false
+                }
+            },
+            "producao" : false,
+            "impressaoFcp" : false,
+            "impressaoPartilha" : true,
+            "versaoManual" : "6.0",
+            "versaoEsquema" : "pl_009",
+            "numeracao" : []
+        },
+        "ativo" : false
+    },
+    "nfce" : {
+        "config" : {
+            "email" : {
+                "envio" : false
+            },
+            "integracoes" : {
+                "plugStorage" : {
+                    "ativo" : false
+                }
+            },
+            "producao" : false,
+            "versaoManual" : "6.0",
+            "versaoEsquema" : "pl_009",
+            "numeracao" : []
+        },
+        "ativo" : false
+    },
+    "incentivoFiscal" : false,
+    "incentivadorCultural" : false,
+    "cpfCnpj" : "47.946.207/0001-17",
+    "inscricaoMunicipal" : "123456",
+    "certificado" : "65986785e2fc917ac72fe083",
+    "razaoSocial" : "IDATA SOFTWARE LTDA",
+    "simplesNacional" : true,
+    "regimeTributario" : 1,
+    "regimeTributarioEspecial" : 6
+}

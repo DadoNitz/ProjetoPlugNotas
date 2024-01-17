@@ -1,0 +1,84 @@
+[
+{
+    "idIntegracao": "csda2d0dj929",
+    "presencial": true,
+    "consumidorFinal": true,
+    "natureza": "OPERAÇÃO INTERNA",
+    "emitente": {
+      "cpfCnpj": "08187168000160"
+    },
+    "destinatario": {
+      "cpfCnpj": "08114280956",
+      "razaoSocial": "NF-E EMITIDA EM AMBIENTE DE HOMOLOGACAO - SEM VALOR FISCAL",
+      "email": "contato@tecnospeed.com.br",
+      "endereco": {
+        "tipoLogradouro": "Avenida",
+        "logradouro": "AVENIDA DUQUE DE CAXIAS",
+        "numero": "882",
+        "bairro": "CENTRO",
+        "codigoCidade": "4115200",
+        "descricaoCidade": "MARINGA",
+        "estado": "PR",
+        "cep": "87020025"
+      }
+    },
+    "itens": [
+      {
+        "codigo": "1",
+        "descricao": "NOTA FISCAL EMITIDA EM AMBIENTE DE HOMOLOGACAO - SEM VALOR FISCAL",
+        "ncm": "06029090",
+        "cest": "0123456",
+        "cfop": "5101",
+        "valorUnitario": {
+          "comercial": 4.6,
+          "tributavel": 4.6
+        },
+        "valor": 4.6,
+        "tributos": {
+          "icms": {
+            "origem": "0",
+            "cst": "00",
+            "baseCalculo": {
+              "modalidadeDeterminacao": 0,
+              "valor": 0
+            },
+            "aliquota": 0,
+            "valor": 0
+          },
+          "pis": {
+            "cst": "99",
+            "baseCalculo": {
+              "valor": 0,
+              "quantidade": 0
+            },
+            "aliquota": 0,
+            "valor": 0
+          },
+          "cofins": {
+            "cst": "07",
+            "baseCalculo": {
+              "valor": 0
+            },
+            "aliquota": 0,
+            "valor": 0
+          }
+        }
+      }
+    ],
+    "pagamentos": [
+      {
+        "aVista": true,
+        "meio": "01",
+        "valor": 4.6
+      }
+    ],
+    "responsavelTecnico": {
+      "cpfCnpj": "08187168000160",
+      "nome": "Tecnospeed",
+      "email": "contato@tecnospeed.com.br",
+      "telefone": {
+        "ddd": "44",
+        "numero": "30379500"
+      }
+    }
+  } ]
