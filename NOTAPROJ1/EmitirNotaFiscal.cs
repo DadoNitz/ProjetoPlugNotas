@@ -268,10 +268,15 @@ namespace NOTAPROJ1
                 string authToken = "2da392a6-79d2-4304-a8b7-959572c7e44d";
 
                 await EnviarJsonParaAPI(apiUrl, json, authToken);
+
+                Console.WriteLine("Pressione qualquer tecla para voltar ao menu...");
+                Console.ReadKey();
             }
             else
             {
                 Console.WriteLine("Arquivo não encontrado. Certifique-se de fornecer o caminho correto.");
+                Console.WriteLine("Pressione qualquer tecla para voltar ao menu...");
+                Console.ReadKey();
             }
         }
 
@@ -292,7 +297,7 @@ namespace NOTAPROJ1
                     if (response.IsSuccessStatusCode)
                     {
                         string responseBody = await response.Content.ReadAsStringAsync();
-                        Console.WriteLine($"Nota em processamento: {responseBody}");
+                        Console.WriteLine(JsonBeautify(responseBody));
                     }
                     else
                     {
@@ -304,6 +309,11 @@ namespace NOTAPROJ1
                     Console.WriteLine($"Erro na requisição: {ex.Message}");
                 }
             }
+        }
+        private static string JsonBeautify(string inputJson)
+        {
+            dynamic parsedJson = Newtonsoft.Json.JsonConvert.DeserializeObject(inputJson);
+            return Newtonsoft.Json.JsonConvert.SerializeObject(parsedJson, Newtonsoft.Json.Formatting.Indented);
         }
     }
 }

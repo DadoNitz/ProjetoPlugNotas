@@ -24,6 +24,9 @@ namespace NOTAPROJ1
             string senha = Console.ReadLine();
 
             await UploadFile(caminho, senha);
+
+            Console.WriteLine("Pressione qualquer tecla para voltar ao menu...");
+            Console.ReadKey();
         }
 
         static X509Certificate2 CarregarCertificado(string caminho, string senha)

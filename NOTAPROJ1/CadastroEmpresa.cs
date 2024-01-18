@@ -68,6 +68,10 @@ namespace NOTAPROJ1
 
                     if (response.IsSuccessStatusCode)
                     {
+                        string responseBody = await response.Content.ReadAsStringAsync();
+                        Console.WriteLine($"Resposta da API:\n{JsonBeautify(responseBody)}");
+
+
                         bool dadosCorretos = false;
                         EmpresaCadastro novaEmpresa;
 
@@ -369,6 +373,9 @@ namespace NOTAPROJ1
                 string authToken = "2da392a6-79d2-4304-a8b7-959572c7e44d";
 
                 await EnviarJsonParaAPI(apiUrl, json, authToken);
+
+                Console.WriteLine("Pressione qualquer tecla para voltar ao menu...");
+                Console.ReadKey();
             }
             else
             {
