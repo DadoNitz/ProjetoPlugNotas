@@ -11,7 +11,7 @@ namespace NOTAPROJ1
                 Console.Clear(); // Limpa a tela a cada iteração do menu
                 Console.ForegroundColor = ConsoleColor.DarkYellow;
                 Console.WriteLine("============================================");
-                Console.WriteLine("              Menu Principal                ");
+                Console.WriteLine("|             Menu Principal               |");
                 Console.WriteLine("============================================");
                 Console.ResetColor();
                 Console.WriteLine("1. Emitir Nota Fiscal");

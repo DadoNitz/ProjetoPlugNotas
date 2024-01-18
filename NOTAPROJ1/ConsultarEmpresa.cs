@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Net.Http;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace NOTAPROJ1
@@ -41,6 +42,8 @@ namespace NOTAPROJ1
         {
             Console.Write("Informe o CNPJ da Empresa: ");
             string cnpj = Console.ReadLine();
+            cnpj = Regex.Replace(cnpj, "[^0-9]+", "");
+
 
             string apiUrl = "https://api.sandbox.plugnotas.com.br";
             string authToken = "2da392a6-79d2-4304-a8b7-959572c7e44d";

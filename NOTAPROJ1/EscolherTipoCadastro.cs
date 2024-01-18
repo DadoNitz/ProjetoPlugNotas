@@ -24,9 +24,6 @@ namespace NOTAPROJ1
             {
 
                 case "1":
-                    Console.ForegroundColor = ConsoleColor.DarkYellow;
-                    Console.WriteLine("========> Insira os dados da NFe: <=========");
-                    Console.ResetColor();
                     CadastroEmpresa.main();
                     break;
                 case "2":
