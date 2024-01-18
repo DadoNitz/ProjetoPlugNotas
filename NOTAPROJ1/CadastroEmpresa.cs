@@ -71,7 +71,6 @@ namespace NOTAPROJ1
                         string responseBody = await response.Content.ReadAsStringAsync();
                         Console.WriteLine($"Resposta da API:\n{JsonBeautify(responseBody)}");
 
-
                         bool dadosCorretos = false;
                         EmpresaCadastro novaEmpresa;
 

@@ -78,7 +78,8 @@ namespace NOTAPROJ1
 
                     if (response.IsSuccessStatusCode)
                     {
-                        Console.WriteLine("Upload de arquivo bem-sucedido!");
+                        string responseBody = await response.Content.ReadAsStringAsync();
+                        Console.WriteLine($"{JsonBeautify(responseBody)}");
                     }
                     else
                     {
@@ -90,6 +91,11 @@ namespace NOTAPROJ1
                     Console.WriteLine($"Erro no upload: {ex.Message}");
                 }
             }
+        }
+        private static string JsonBeautify(string inputJson)
+        {
+            dynamic parsedJson = Newtonsoft.Json.JsonConvert.DeserializeObject(inputJson);
+            return Newtonsoft.Json.JsonConvert.SerializeObject(parsedJson, Newtonsoft.Json.Formatting.Indented);
         }
 
     }

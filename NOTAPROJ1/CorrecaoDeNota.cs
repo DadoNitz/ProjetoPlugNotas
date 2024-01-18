@@ -5,26 +5,26 @@ using System.Threading.Tasks;
 
 namespace NOTAPROJ1
 {
-    public class CancelarNfe
+    public class SolicitarCorrecaoDeNota
     {
         public static async Task Main()
         {
             Console.Write("Informe o ID da Nota Fiscal: ");
             string idNota = Console.ReadLine();
 
-            Console.Write("Justificativa: ");
-            string reason = Console.ReadLine();
+            Console.Write("Correção: ");
+            string correcao = Console.ReadLine();
 
-            string apiUrl = $"https://api.sandbox.plugnotas.com.br/nfe/{idNota}/cancelamento";
+            string apiUrl = $"https://api.sandbox.plugnotas.com.br/nfe/{idNota}/cce";
             string authToken = "2da392a6-79d2-4304-a8b7-959572c7e44d";
 
-            await CancelarNota(apiUrl, authToken, reason);
+            await CorrecaoDeNota(apiUrl, authToken, correcao);
 
             Console.WriteLine("Pressione qualquer tecla para voltar ao menu...");
             Console.ReadKey();
         }
 
-        public static async Task CancelarNota(string apiUrl, string authToken, string reason)
+        public static async Task CorrecaoDeNota(string apiUrl, string authToken, string correcao)
         {
             using (HttpClient httpClient = new HttpClient())
             {
@@ -32,9 +32,9 @@ namespace NOTAPROJ1
 
                 try
                 {
-                    var cancelamentoPayload = new { justificativa = reason };
+                    var Correcaopayload = new { Correcao = correcao };
 
-                    var jsonPayload = Newtonsoft.Json.JsonConvert.SerializeObject(cancelamentoPayload);
+                    var jsonPayload = Newtonsoft.Json.JsonConvert.SerializeObject(Correcaopayload);
 
                     var content = new StringContent(jsonPayload, Encoding.UTF8, "application/json");
 
@@ -47,12 +47,12 @@ namespace NOTAPROJ1
                     }
                     else
                     {
-                        Console.WriteLine($"Erro no cancelamento: {response.StatusCode} - {response.ReasonPhrase}");
+                        Console.WriteLine($"Erro na correcao: {response.StatusCode} - {response.ReasonPhrase}");
                     }
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine($"Erro no cancelamento: {ex.Message}");
+                    Console.WriteLine($"Erro na correcao: {ex.Message}");
                 }
             }
         }
