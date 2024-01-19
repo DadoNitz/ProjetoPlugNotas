@@ -8,7 +8,7 @@ namespace NOTAPROJ1
         public static void escolhertipocadastro()
         {
             Console.ForegroundColor = ConsoleColor.DarkYellow;
-            Console.WriteLine("==========> Cadastrar Empresa <==============");
+            Console.WriteLine("==========> Cadastrar Empresa <=============");
             Console.ResetColor();
             Console.WriteLine("1. Inserir os Dados ");
             Console.WriteLine("2. Enviar JSON ");

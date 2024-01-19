@@ -15,7 +15,7 @@ namespace NOTAPROJ1
             Console.Write("Correção: ");
             string correcao = Console.ReadLine();
 
-            string apiUrl = $"https://api.sandbox.plugnotas.com.br/nfe/{idNota}/cce";
+            string apiUrl = "https://api.sandbox.plugnotas.com.br/nfe/{idNota}/cce";
             string authToken = "2da392a6-79d2-4304-a8b7-959572c7e44d";
 
             await CorrecaoDeNota(apiUrl, authToken, correcao);
@@ -32,9 +32,9 @@ namespace NOTAPROJ1
 
                 try
                 {
-                    var Correcaopayload = new { Correcao = correcao };
+                    var correcaoPayload = new { correcao = correcao };
 
-                    var jsonPayload = Newtonsoft.Json.JsonConvert.SerializeObject(Correcaopayload);
+                    var jsonPayload = Newtonsoft.Json.JsonConvert.SerializeObject(correcaoPayload);
 
                     var content = new StringContent(jsonPayload, Encoding.UTF8, "application/json");
 
