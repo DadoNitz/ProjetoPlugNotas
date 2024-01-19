@@ -22,7 +22,6 @@ namespace NOTAPROJ1
 
             switch (escolha)
             {
-
                 case "1":
                     CadastroEmpresa.main();
                     break;
@@ -36,7 +35,6 @@ namespace NOTAPROJ1
                 case "0":
                     Console.WriteLine("Encerrando o programa...");
                     return;
-
             }
         }
     }

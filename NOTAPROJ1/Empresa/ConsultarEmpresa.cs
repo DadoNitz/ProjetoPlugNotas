@@ -20,7 +20,7 @@ namespace NOTAPROJ1
                     HttpResponseMessage response = await httpClient.GetAsync(apiUrlEmpresa);
                     if (response.IsSuccessStatusCode)
                     {
-                        
+
                         Console.ForegroundColor = ConsoleColor.DarkYellow;
                         Console.WriteLine("==========> Dados da Empresa <==============");
                         Console.ResetColor();

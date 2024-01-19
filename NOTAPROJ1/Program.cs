@@ -31,7 +31,7 @@ namespace NOTAPROJ1
                         Console.ForegroundColor = ConsoleColor.DarkYellow;
                         Console.WriteLine("================> Notas <===================");
                         Console.ResetColor();
-                        Console.WriteLine("1. Emitir Nota Fiscal");
+                        Console.WriteLine("1. Emitir NFe");
                         Console.WriteLine("2. Consultar Cancelamento NFe");
                         Console.WriteLine("3. Cancelar NFe");
                         Console.WriteLine("4. Consultar NFe");
@@ -153,7 +153,6 @@ namespace NOTAPROJ1
                         Console.WriteLine("Opção inválida. Tente novamente.");
                         break;
                 }
-
                 Console.ReadKey();
             }
         }
