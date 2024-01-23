@@ -15,30 +15,36 @@ namespace NOTAPROJ1
             Console.Write("Correção: ");
             string correcao = Console.ReadLine();
 
-            string apiUrl = "https://api.sandbox.plugnotas.com.br/nfe/{idNota}/cce";
+            string apiUrl = $"https://api.sandbox.plugnotas.com.br/nfe/{idNota}/cce";
             string authToken = "2da392a6-79d2-4304-a8b7-959572c7e44d";
 
-            await CorrecaoDeNota(apiUrl, authToken, correcao);
+            await ConsultarNotasPorPeriodo(apiUrl, authToken);
 
             Console.WriteLine("Pressione qualquer tecla para voltar ao menu...");
             Console.ReadKey();
         }
 
-        public static async Task CorrecaoDeNota(string apiUrl, string authToken, string correcao)
+        public static async Task ConsultarNotasPorPeriodo(string apiUrl, string authToken)
         {
-            using (HttpClient httpClient = new HttpClient())
+            Console.Write("Informe o CPF ou CNPJ da Empresa: ");
+            string cpfCnpj = Console.ReadLine();
+
+            Console.Write("Informe a data inicial (formato YYYY-MM-DD): ");
+            string dataInicial = Console.ReadLine();
+
+            Console.Write("Informe a data final (formato YYYY-MM-DD): ");
+            string dataFinal = Console.ReadLine();
+
+            try
             {
-                httpClient.DefaultRequestHeaders.Add("X-API-KEY", authToken);
+                string queryString = $"cpfCnpj={cpfCnpj}&dataInicial={dataInicial}&dataFinal={dataFinal}";
+                string requestUrl = $"{apiUrl}/consulta/periodo?{queryString}";
 
-                try
+                using (HttpClient httpClient = new HttpClient())
                 {
-                    var correcaoPayload = new { correcao = correcao };
+                    httpClient.DefaultRequestHeaders.Add("X-API-KEY", authToken);
 
-                    var jsonPayload = Newtonsoft.Json.JsonConvert.SerializeObject(correcaoPayload);
-
-                    var content = new StringContent(jsonPayload, Encoding.UTF8, "application/json");
-
-                    HttpResponseMessage response = await httpClient.PostAsync(apiUrl, content);
+                    HttpResponseMessage response = await httpClient.GetAsync(requestUrl);
 
                     if (response.IsSuccessStatusCode)
                     {
@@ -47,15 +53,16 @@ namespace NOTAPROJ1
                     }
                     else
                     {
-                        Console.WriteLine($"Erro na correcao: {response.StatusCode} - {response.ReasonPhrase}");
+                        Console.WriteLine($"Erro na consulta: {response.StatusCode} - {response.ReasonPhrase}");
                     }
                 }
-                catch (Exception ex)
-                {
-                    Console.WriteLine($"Erro na correcao: {ex.Message}");
-                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro na consulta: {ex.Message}");
             }
         }
+
         private static string JsonBeautify(string inputJson)
         {
             dynamic parsedJson = Newtonsoft.Json.JsonConvert.DeserializeObject(inputJson);

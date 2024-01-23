@@ -32,10 +32,11 @@ namespace NOTAPROJ1
                         Console.WriteLine("================> Notas <===================");
                         Console.ResetColor();
                         Console.WriteLine("1. Emitir NFe");
-                        Console.WriteLine("2. Consultar Cancelamento NFe");
+                        Console.WriteLine("2. Consultar cancelamento NFe");
                         Console.WriteLine("3. Cancelar NFe");
                         Console.WriteLine("4. Consultar NFe");
-                        Console.WriteLine("5. Solicitar Correcao de NFe");
+                        Console.WriteLine("5. Solicitar correcao de NFe");
+                        Console.WriteLine("6. Consultar nota por periodo");
                         Console.WriteLine("0. Sair");
                         Console.ForegroundColor = ConsoleColor.DarkYellow;
                         Console.WriteLine("============================================");
@@ -73,6 +74,12 @@ namespace NOTAPROJ1
                                 Console.WriteLine("=======> Solicitar Correcao de NFe <========");
                                 Console.ResetColor();
                                 SolicitarCorrecaoDeNota.Main();
+                                break;
+                            case "6":
+                                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                                Console.WriteLine("=======> Solicitar Correcao de NFe <========");
+                                Console.ResetColor();
+                                ConsultarNotaFiscalPorPeriodo.Main();
                                 break;
                             case "0":
                                 Console.WriteLine("Encerrando o programa...");
