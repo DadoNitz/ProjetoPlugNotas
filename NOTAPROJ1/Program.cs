@@ -53,7 +53,7 @@ namespace NOTAPROJ1
                                 break;
                             case "2":
                                 Console.ForegroundColor = ConsoleColor.DarkYellow;
-                                Console.WriteLine("======> Consultar Cancelamento NFe <========");
+                                Console.WriteLine("======> Consultar cancelamento NFe <========");
                                 Console.ResetColor();
                                 ConsultarCancelamentoNFe.Main();
                                 break;
@@ -77,7 +77,7 @@ namespace NOTAPROJ1
                                 break;
                             case "6":
                                 Console.ForegroundColor = ConsoleColor.DarkYellow;
-                                Console.WriteLine("=======> Solicitar Correcao de NFe <========");
+                                Console.WriteLine("=======> Solicitar correcao de NFe <========");
                                 Console.ResetColor();
                                 ConsultarNotaFiscalPorPeriodo.Main();
                                 break;
@@ -92,8 +92,8 @@ namespace NOTAPROJ1
                         Console.ForegroundColor = ConsoleColor.DarkYellow;
                         Console.WriteLine("============> Certificados <================");
                         Console.ResetColor();
-                        Console.WriteLine("1. Cadastrar Certificado");
-                        Console.WriteLine("2. Consultar Certificado");
+                        Console.WriteLine("1. Cadastrar certificado");
+                        Console.WriteLine("2. Consultar certificado");
                         Console.WriteLine("0. Sair");
                         Console.ForegroundColor = ConsoleColor.DarkYellow;
                         Console.WriteLine("============================================");
@@ -106,13 +106,13 @@ namespace NOTAPROJ1
                         {
                             case "1":
                                 Console.ForegroundColor = ConsoleColor.DarkYellow;
-                                Console.WriteLine("========> Cadastrar Certificado <==========");
+                                Console.WriteLine("========> Cadastrar certificado <==========");
                                 Console.ResetColor();
                                 CadastroCertificado.cadastrocertificado();
                                 break;
                             case "2":
                                 Console.ForegroundColor = ConsoleColor.DarkYellow;
-                                Console.WriteLine("========> Consultar Certificado <==========");
+                                Console.WriteLine("========> Consultar certificado <==========");
                                 Console.ResetColor();
                                 ConsultarCertificado.Main();
                                 break;
@@ -126,8 +126,8 @@ namespace NOTAPROJ1
                         Console.ForegroundColor = ConsoleColor.DarkYellow;
                         Console.WriteLine("===============> Empresa <==================");
                         Console.ResetColor();
-                        Console.WriteLine("1. Cadastrar Empresa");
-                        Console.WriteLine("2. Consultar Empresa");
+                        Console.WriteLine("1. Cadastrar empresa");
+                        Console.WriteLine("2. Consultar empresa");
                         Console.WriteLine("0. Sair");
                         Console.ForegroundColor = ConsoleColor.DarkYellow;
                         Console.WriteLine("============================================");
@@ -143,7 +143,7 @@ namespace NOTAPROJ1
                                 break;
                             case "2":
                                 Console.ForegroundColor = ConsoleColor.DarkYellow;
-                                Console.WriteLine("========> Consultar Empresa <==========");
+                                Console.WriteLine("========> Consultar empresa <==========");
                                 Console.ResetColor();
                                 ConsultarEmpresa.Main();
                                 break;

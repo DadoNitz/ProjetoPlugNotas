@@ -22,7 +22,7 @@ namespace NOTAPROJ1
 
                 // Enviando o JSON para a API
                 EnviarJsonParaAPI(apiUrl, json, authToken);
-                Console.WriteLine("Dados coletados em formato JSON:");
+                Console.WriteLine("Dados coletados em formato json:");
                 Console.WriteLine("[");
                 Console.WriteLine(json);
                 Console.WriteLine("]");

@@ -10,8 +10,8 @@ namespace NOTAPROJ1
             Console.ForegroundColor = ConsoleColor.DarkYellow;
             Console.WriteLine("==========> Cadastrar Empresa <=============");
             Console.ResetColor();
-            Console.WriteLine("1. Inserir os Dados ");
-            Console.WriteLine("2. Enviar JSON ");
+            Console.WriteLine("1. Inserir os dados ");
+            Console.WriteLine("2. Enviar json ");
             Console.WriteLine("0. Sair");
             Console.ForegroundColor = ConsoleColor.DarkYellow;
             Console.WriteLine("============================================");

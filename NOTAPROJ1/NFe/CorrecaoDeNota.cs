@@ -8,7 +8,7 @@ namespace NOTAPROJ1
     {
         public static async Task Main()
         {
-            Console.Write("Informe o ID da Nota Fiscal: ");
+            Console.Write("Informe o ID da nota fiscal: ");
             string idNota = Console.ReadLine();
 
             Console.Write("Correção: ");
