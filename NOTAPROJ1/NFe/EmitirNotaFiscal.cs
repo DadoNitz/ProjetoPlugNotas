@@ -20,13 +20,14 @@ namespace NOTAPROJ1
                 string apiUrl = "https://api.sandbox.plugnotas.com.br/nfe";
                 string authToken = "2da392a6-79d2-4304-a8b7-959572c7e44d";
 
-                // Enviando o JSON para a API
                 EnviarJsonParaAPI(apiUrl, json, authToken);
+                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                Console.WriteLine("============================================");
+                Console.ResetColor();
                 Console.WriteLine("Dados coletados em formato json:");
                 Console.WriteLine("[");
                 Console.WriteLine(json);
                 Console.WriteLine("]");
-
 
                 Console.WriteLine("Pressione qualquer tecla para voltar ao menu...");
                 Console.ReadKey();
@@ -267,6 +268,7 @@ namespace NOTAPROJ1
                 string apiUrl = "https://api.sandbox.plugnotas.com.br/nfe";
                 string authToken = "2da392a6-79d2-4304-a8b7-959572c7e44d";
 
+                // Enviando o JSON para a API e verificando se deseja mostrar os dados digitados
                 await EnviarJsonParaAPI(apiUrl, json, authToken);
 
                 Console.WriteLine("Pressione qualquer tecla para voltar ao menu...");
@@ -280,7 +282,7 @@ namespace NOTAPROJ1
             }
         }
 
-        public static async Task EnviarJsonParaAPI(string apiUrl, string json, string authToken)
+        public static async Task EnviarJsonParaAPI(string apiUrl, string json, string authToken, bool mostrarDadosDigitados = true)
         {
             using (HttpClient httpClient = new HttpClient())
             {
@@ -293,11 +295,21 @@ namespace NOTAPROJ1
                 {
                     HttpResponseMessage response = await httpClient.PostAsync(apiUrl, content);
 
-
                     if (response.IsSuccessStatusCode)
                     {
                         string responseBody = await response.Content.ReadAsStringAsync();
                         Console.WriteLine(JsonBeautify(responseBody));
+
+                        if (mostrarDadosDigitados)
+                        {
+                            Console.WriteLine("Deseja ver os dados do json? (S/N)");
+                            var resposta = Console.ReadKey().KeyChar;
+                            if (resposta == 'S' || resposta == 's')
+                            {
+                                Console.WriteLine("Dados:");
+                                Console.WriteLine(JsonBeautify(json));
+                            }
+                        }
                     }
                     else
                     {
@@ -310,6 +322,7 @@ namespace NOTAPROJ1
                 }
             }
         }
+
         private static string JsonBeautify(string inputJson)
         {
             dynamic parsedJson = Newtonsoft.Json.JsonConvert.DeserializeObject(inputJson);
